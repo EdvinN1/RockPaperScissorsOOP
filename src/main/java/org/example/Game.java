@@ -24,7 +24,13 @@ private Scanner scanner;
         System.out.println("Enter your name: ");
         user.setName(scanner.nextLine());
 
-        while()
+        while(isRunning){
+        displaypoints();
+        user.ChooseOption();
+        computer.ChooseOption();
+        displayWinner(determineWinner());
+        updatePoints(determineWinner());
+        }
     }
     private int determineWinner(){
         if(
@@ -43,6 +49,13 @@ private Scanner scanner;
         }
 }
 
+private void displaypoints(){
+    System.out.println(user.getName());
+    System.out.println(user.getPoints());
+    System.out.println(computer.getName());
+    System.out.println(computer.getPoints());
+}
+
 private void displayWinner(int winner){
         switch(winner) {
             case 1:
@@ -58,11 +71,11 @@ private void displayWinner(int winner){
 }
 private void updatePoints (int winner) {
         if(winner == 1) {
-            playerPoints++;
+            user.setPoints(+1);
         }else if (winner == 2) {
             System.out.println("TIE");
         } else {
-            computerPoints++;
+            computer.setPoints(+1);
         }
 }
 

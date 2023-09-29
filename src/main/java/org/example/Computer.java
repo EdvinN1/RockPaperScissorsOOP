@@ -4,8 +4,6 @@ import java.util.Random;
 
 public class Computer extends Player{
 
-    private String name = "Computer";
-
     @Override
     public void ChooseOption() {
         Random random = new Random();
@@ -22,5 +20,9 @@ public class Computer extends Player{
                 setChoice(Choice.SCISSORS);
                 break;
         }
+    }
+
+    public String getName() {
+        return "Computer";
     }
 }
