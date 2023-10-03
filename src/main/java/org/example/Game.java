@@ -14,7 +14,6 @@ private Scanner scanner;
         user = userFactory.createPlayer();
         computer = computerFactory.createPlayer();
         scanner = new Scanner(System.in);
-        start();
     }
     public void start(){
         isRunning = true;
@@ -32,20 +31,25 @@ private Scanner scanner;
         int roundsToWin = scanner.nextInt();
         scanner.nextLine(); // Consume the newline character
 
-        while(isRunning){
 
-        displayPoints();
-        user.ChooseOption();
-        computer.ChooseOption();
-        displayWinner(determineWinner());
-        updatePoints(determineWinner());
-            if (user.getPoints() != roundsToWin || computer.getPoints() != roundsToWin) {
+        while (isRunning) {
+            user.ChooseOption();
+            computer.ChooseOption();
+            int winner = determineWinner();
+            updatePoints(winner);
+            displayPoints();  // Update PvsC after updating points
+            SaveRound saveRound = new SaveRound(user.getName(), computer.getName(), user.getChoice().toString(), computer.getChoice().toString(), PvsC, "HEj");
+            System.out.println(saveRound);
+
+            if (user.getPoints() == roundsToWin || computer.getPoints() == roundsToWin) {
                 isRunning = false;
                 displayFinalScore();
                 break;
             }
-
         }
+
+
+
     }
     private int determineWinner(){
         if(
@@ -70,8 +74,10 @@ private Scanner scanner;
     //System.out.println(computer.getName());
     System.out.println(computer.getPoints());
 }*/
+String PvsC;
 private void displayPoints() {
-    System.out.println(user.getPoints() + " - " + computer.getPoints());
+    PvsC = user.getPoints() + " - " + computer.getPoints();
+    System.out.println(PvsC);
 }
     private void displayFinalScore() {
         System.out.println("Final Score: " + user.getPoints() + " - " + computer.getPoints());
@@ -95,6 +101,7 @@ private void displayWinner(int winner){
         }
 }
 private void updatePoints (int winner) {
+
         if(winner == 1) {
             user.setPoints(user.getPoints() + 1);
         }else if (winner == 2) {
