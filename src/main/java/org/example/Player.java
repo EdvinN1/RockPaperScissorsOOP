@@ -14,7 +14,8 @@ public abstract class Player {
         this.points = points;
     }
 
-    public Player() {}
+    public Player() {
+    }
 
     public Choice getChoice() {
         return choice;
@@ -23,6 +24,7 @@ public abstract class Player {
     public void setChoice(Choice newChoice) {
         this.choice = newChoice;
     }
+
     public abstract void ChooseOption();
 
     public String getName() {

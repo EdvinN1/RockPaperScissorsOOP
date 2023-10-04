@@ -1,8 +1,5 @@
 package org.example;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class SaveRound {
     private String userName;
     private String opponentName;
@@ -19,8 +16,6 @@ public class SaveRound {
         this.roundResult = roundResult;
         this.endResult = endResult;
     }
-
-List<SaveRound> rounds = new ArrayList<>();
 
     public void setUserName(String userName) {
         this.userName = userName;
@@ -55,7 +50,6 @@ List<SaveRound> rounds = new ArrayList<>();
                 ", opponentChoice='" + opponentChoice + '\'' +
                 ", roundResult='" + roundResult + '\'' +
                 ", endResult='" + endResult + '\'' +
-                ", rounds=" + rounds +
                 '}';
     }
 }

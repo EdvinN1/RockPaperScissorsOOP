@@ -2,11 +2,10 @@ package org.example;
 
 import java.util.Scanner;
 
-public class User extends Player{
+public class User extends Player {
 
     private Scanner userInput;
     private String name;
-
 
 
     public User() {
@@ -18,6 +17,7 @@ public class User extends Player{
         System.out.println("Choose: Rock, Paper or Scissors");
         setChoice(Choice.valueOf(userInput.nextLine().toUpperCase()));
     }
+
     public String getName() {
         return name;
     }
