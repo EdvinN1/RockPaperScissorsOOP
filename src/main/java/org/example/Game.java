@@ -9,7 +9,9 @@ public class Game {
     private MatchHistory matchHistory;
     private boolean isRunning = false;
     private Scanner scanner;
-
+    public MatchHistory getMatchHistory() {
+        return matchHistory;
+    }
     public Game(PlayerFactory userFactory, PlayerFactory computerFactory) {
         user = userFactory.createPlayer();
         computer = computerFactory.createPlayer();
@@ -47,7 +49,8 @@ public class Game {
                     PvsC,
                     "HEj"
             );
-            matchHistory.addRounds(saveRound);
+           // matchHistory.addRounds(saveRound);
+            System.out.println(saveRound);
 
             if (user.getPoints() == roundsToWin || computer.getPoints() == roundsToWin) {
                 isRunning = false;
@@ -55,8 +58,10 @@ public class Game {
                 matchHistory.newGameHistory();
 
             }
+            matchHistory.addRounds(saveRound);
+            matchHistory.printAllGames();
         }
-        matchHistory.printAllGames();
+
 
     }
 

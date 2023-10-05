@@ -1,5 +1,7 @@
 package org.example;
 
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
 
@@ -7,7 +9,9 @@ public class Main {
         PlayerFactory computerFactory = new ComputerFactory();
 
         Game game = new Game(userFactory, computerFactory);
-        game.start();
+        DisplayMenu displayMenu = new DisplayMenu();
+        displayMenu.setGame(game);
+        displayMenu.handleUserInput();
 
     }
 }

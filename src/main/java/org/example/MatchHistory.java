@@ -37,5 +37,5 @@ public class MatchHistory {
     public List<List<SaveRound>> getAllMatches() {
         return allMatches;
     }
-
 }
+
