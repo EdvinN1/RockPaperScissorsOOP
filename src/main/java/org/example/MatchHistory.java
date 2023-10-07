@@ -1,5 +1,7 @@
 package org.example;
 
+import org.example.SaveRound;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,13 +12,13 @@ public class MatchHistory {
         allMatches = new ArrayList<>();
     }
 
-    public void newGameHistory() {
-        allMatches.add(new ArrayList<>());
+    public void newGameHistory(List<SaveRound> rounds) {
+        allMatches.add(rounds);
     }
 
-    public void addRounds(SaveRound round) {
-        if (!allMatches.isEmpty()) {
-            List<SaveRound> currentMatch = allMatches.get(allMatches.size() - 1);
+    public void addRounds(int gameNumber, SaveRound round) {
+        if (gameNumber > 0 && gameNumber <= allMatches.size()) {
+            List<SaveRound> currentMatch = allMatches.get(gameNumber - 1);
             currentMatch.add(round);
         }
     }
@@ -38,4 +40,3 @@ public class MatchHistory {
         return allMatches;
     }
 }
-

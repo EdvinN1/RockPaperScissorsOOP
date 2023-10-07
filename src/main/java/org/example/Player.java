@@ -31,6 +31,8 @@ public abstract class Player {
         return name;
     }
 
-    public void setName(String nextLine) {
+    public void setName(String name) {
+        this.name = name;
     }
 }
+

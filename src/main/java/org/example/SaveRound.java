@@ -18,6 +18,30 @@ public class SaveRound {
         this.endResult = endResult;
     }
 
+    public String getUserName() {
+        return userName;
+    }
+
+    public String getOpponentName() {
+        return opponentName;
+    }
+
+    public String getUserChoice() {
+        return userChoice;
+    }
+
+    public String getOpponentChoice() {
+        return opponentChoice;
+    }
+
+    public String getRoundResult() {
+        return roundResult;
+    }
+
+    public String getEndResult() {
+        return endResult;
+    }
+
     public void setUserName(String userName) {
         this.userName = userName;
     }

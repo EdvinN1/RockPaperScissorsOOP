@@ -1,5 +1,7 @@
 package org.example;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Game {
@@ -8,7 +10,10 @@ public class Game {
     private String PvsC;
     private MatchHistory matchHistory;
     private boolean isRunning = false;
+    private List<SaveRound> roundResults; // Use SaveRound for detailed round results
+    private int currentGameNumber;
     private Scanner scanner;
+
     public MatchHistory getMatchHistory() {
         return matchHistory;
     }
@@ -17,6 +22,7 @@ public class Game {
         computer = computerFactory.createPlayer();
         scanner = new Scanner(System.in);
         matchHistory = new MatchHistory();
+        roundResults = new ArrayList<>();
     }
 
     public void start() {
@@ -35,13 +41,15 @@ public class Game {
         int roundsToWin = scanner.nextInt();
         scanner.nextLine();
 
+        List<SaveRound> roundResults = new ArrayList<>();
+
         while (isRunning) {
             user.ChooseOption();
             computer.ChooseOption();
             int winner = determineWinner();
             updatePoints(winner);
             displayPoints();
-            SaveRound saveRound = new SaveRound(
+            SaveRound roundResult = new SaveRound(
                     user.getName(),
                     computer.getName(),
                     user.getChoice().toString(),
@@ -49,20 +57,37 @@ public class Game {
                     PvsC,
                     "HEj"
             );
-           // matchHistory.addRounds(saveRound);
-            System.out.println(saveRound);
+            roundResults.add(roundResult);
 
             if (user.getPoints() == roundsToWin || computer.getPoints() == roundsToWin) {
                 isRunning = false;
                 displayFinalScore();
-                matchHistory.newGameHistory();
+                matchHistory.newGameHistory(new ArrayList<>(roundResults));
+                displayAllRoundResults();
+
+                user.setPoints(0);
+                computer.setPoints(0);
+
+                currentGameNumber++;
 
             }
-            matchHistory.addRounds(saveRound);
-            matchHistory.printAllGames();
+            
         }
 
 
+    }
+    public void displayAllRoundResults() {
+        int gameNumber = currentGameNumber;
+        System.out.println("Detailed Round Results for Game " + gameNumber + ":");
+
+        List<SaveRound> roundResults = this.roundResults;
+        for (int i = 0; i < roundResults.size(); i++) {
+            System.out.println("Round " + (i + 1) + ":");
+            System.out.println(roundResults.get(i));
+            matchHistory.addRounds(gameNumber, roundResults.get(i));
+        }
+
+        System.out.println("End of Game " + gameNumber + ".\n");
     }
 
     private int determineWinner() {
@@ -120,4 +145,6 @@ public class Game {
         }
     }
 
+    public void setOpponentFactory(PlayerFactory opponentFactory) {
+    }
 }
