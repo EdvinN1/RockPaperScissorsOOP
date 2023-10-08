@@ -8,7 +8,6 @@ public class NameBasedComputer extends Player {
 
         String userName = getName().toLowerCase();
 
-
         if (userName.contains("a")) {
             System.out.println("Choosing ROCK");
             setChoice(Choice.ROCK);

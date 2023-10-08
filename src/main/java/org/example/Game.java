@@ -1,22 +1,24 @@
 package org.example;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
 public class Game {
-    private Player user;
-    private Player computer;
+    private final Player user;
+    private final Player computer;
     private String PvsC;
-    private MatchHistory matchHistory;
+    private final MatchHistory matchHistory;
     private boolean isRunning = false;
-    private List<SaveRound> roundResults; // Use SaveRound for detailed round results
+    private final List<SaveRound> roundResults; // Use SaveRound for detailed round results
     private int currentGameNumber;
-    private Scanner scanner;
+    private final Scanner scanner;
 
     public MatchHistory getMatchHistory() {
         return matchHistory;
     }
+
     public Game(PlayerFactory userFactory, PlayerFactory computerFactory) {
         user = userFactory.createPlayer();
         computer = computerFactory.createPlayer();
@@ -38,8 +40,24 @@ public class Game {
         user.setName(userName);
 
         System.out.println("Enter the number of rounds to play: ");
-        int roundsToWin = scanner.nextInt();
-        scanner.nextLine();
+        int roundsToWin;
+
+        while (true) {
+            try {
+                roundsToWin = scanner.nextInt();
+                scanner.nextLine();
+
+                if (roundsToWin > 0) {
+                    break;
+                } else {
+                    System.out.println("Please enter a positive number of rounds.");
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input. Please enter a positive number of rounds.");
+                scanner.nextLine();
+            }
+        }
+        ;
 
         List<SaveRound> roundResults = new ArrayList<>();
 
@@ -54,8 +72,7 @@ public class Game {
                     computer.getName(),
                     user.getChoice().toString(),
                     computer.getChoice().toString(),
-                    PvsC,
-                    "HEj"
+                    PvsC
             );
             roundResults.add(roundResult);
 
@@ -71,11 +88,11 @@ public class Game {
                 currentGameNumber++;
 
             }
-            
+
         }
 
-
     }
+
     public void displayAllRoundResults() {
         int gameNumber = currentGameNumber;
         System.out.println("Detailed Round Results for Game " + gameNumber + ":");
@@ -118,20 +135,6 @@ public class Game {
             System.out.println(user.getName() + " won the game!");
         } else if (user.getPoints() < computer.getPoints()) {
             System.out.println("Computer won the game!");
-        }
-    }
-
-    private void displayWinner(int winner) {
-        switch (winner) {
-            case 1:
-                System.out.println("User won!");
-                break;
-            case 2:
-                System.out.println("It's a tie!");
-                break;
-            case 3:
-                System.out.println("Computer won!");
-
         }
     }
 

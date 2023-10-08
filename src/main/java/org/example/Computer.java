@@ -10,15 +10,9 @@ public class Computer extends Player {
 
         int randomNumber = random.nextInt(3) + 1;
         switch (randomNumber) {
-            case 1:
-                setChoice(Choice.ROCK);
-                break;
-            case 2:
-                setChoice(Choice.PAPER);
-                break;
-            case 3:
-                setChoice(Choice.SCISSORS);
-                break;
+            case 1 -> setChoice(Choice.ROCK);
+            case 2 -> setChoice(Choice.PAPER);
+            case 3 -> setChoice(Choice.SCISSORS);
         }
     }
 

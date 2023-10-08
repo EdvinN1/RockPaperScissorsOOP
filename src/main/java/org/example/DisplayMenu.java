@@ -11,6 +11,7 @@ public class DisplayMenu {
     public void setGame(Game game) {
         this.game = game;
     }
+
     private List<PlayerFactory> opponentFactories = new ArrayList<>();
 
     public void addOpponentFactory(PlayerFactory opponentFactory) {
@@ -81,8 +82,6 @@ public class DisplayMenu {
 
 
         game.setOpponentFactory(opponentFactory);
-
-
         game.start();
     }
 
@@ -99,9 +98,8 @@ public class DisplayMenu {
             System.out.println("Game " + (i + 1) + ":");
 
             List<SaveRound> currentGame = allMatches.get(i);
-            for (SaveRound round : currentGame) {
-                System.out.println(round);
-            }
+            currentGame.stream()
+                    .forEach(System.out::println);
 
             System.out.println("End of Game " + (i + 1) + "\n");
         }

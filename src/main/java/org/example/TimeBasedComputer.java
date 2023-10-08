@@ -6,7 +6,6 @@ public class TimeBasedComputer extends Player {
 
     @Override
     public void ChooseOption() {
-        // Implement a strategy based on the current time
         LocalTime currentTime = LocalTime.now();
         int hour = currentTime.getHour();
 

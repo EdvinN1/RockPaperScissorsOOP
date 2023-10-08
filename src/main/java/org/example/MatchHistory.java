@@ -23,19 +23,6 @@ public class MatchHistory {
         }
     }
 
-    public void printAllGames() {
-        for (int i = 0; i < allMatches.size(); i++) {
-            System.out.println("Game " + (i + 1) + ":");
-
-            List<SaveRound> currentGame = allMatches.get(i);
-            for (SaveRound round : currentGame) {
-                System.out.println(round);
-            }
-
-            System.out.println("End of Game " + (i + 1) + "\n");
-        }
-    }
-
     public List<List<SaveRound>> getAllMatches() {
         return allMatches;
     }
